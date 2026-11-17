@@ -1,0 +1,47 @@
+openapi: 3.0.3
+info:
+  title: Addition API
+  version: 1.0.0
+  description: API contract for adding two numbers.
+
+servers:
+  - url: http://localhost:8080
+
+paths:
+  /ms/add:
+    get:
+      summary: Add two numbers
+      operationId: addNumbers
+      parameters:
+        - name: num1
+          in: query
+          required: true
+          schema:
+            type: integer
+          example: 10
+        - name: num2
+          in: query
+          required: true
+          schema:
+            type: integer
+          example: 20
+      responses:
+        '200':
+          description: Addition successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  num1:
+                    type: integer
+                  num2:
+                    type: integer
+                  result:
+                    type: integer
+              example:
+                num1: 10
+                num2: 20
+                result: 30
+        '400':
+          description: Invalid or missing query parameters
